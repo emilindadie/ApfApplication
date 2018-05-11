@@ -1,0 +1,37 @@
+
+<header>
+        <nav>
+            <ul id="navUl">
+                <li><a routerLink="/home" routerLinkActive="active">Accueil</a></li>
+                <li><a routerLink="/operations" routerLinkActive="active">Operations</a></li>
+                <li><a routerLink="/stock-manage" routerLinkActive="active">Gestion de stock</a></li>
+                <mat-menu #appMenu="matMenu">
+                        <button mat-menu-item (click)="deconnexion()"> Deconnexion </button>
+                      </mat-menu>
+                      <button mat-icon-button [matMenuTriggerFor]="appMenu">
+                          <mat-icon>person</mat-icon>
+                      </button>
+            </ul>
+        </nav>
+        <!--
+        <div class="example-sidenav-content">
+            <button type="button" mat-button (click)="drawer.toggle()">
+              Toggle sidenav
+            </button>
+          </div>
+        <mat-drawer-container class="example-container" autosize>
+            <mat-drawer #drawer class="example-sidenav" mode="side">
+              <p>Auto-resizing sidenav</p>
+              <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+              <button (click)="showFiller = !showFiller" mat-raised-button>
+                Toggle extra text
+              </button>
+            </mat-drawer>
+          
+           
+          
+          </mat-drawer-container>-->
+</header>
+    
+    
+       

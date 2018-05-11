@@ -1,0 +1,508 @@
+<app-header></app-header>
+<mat-spinner class="reparation-details-mat-spinner" id="reparation-details-mat-spinner"></mat-spinner>
+<div class="freseniusDetails-container" id="freseniusDetails-container">
+    <div class="col-lg-12 hr">
+    </div>
+    <div class="manage full">
+        <div class="view">
+                <mat-chip-list *ngIf="fresenius.status == 'complete'">
+                        <mat-chip id="mat-chip-state-complete" color="accent" selected="true">Complete</mat-chip>
+                </mat-chip-list>
+                <mat-chip-list  *ngIf="fresenius.status == 'test validé'">
+                        <mat-chip id="mat-chip-state-valide" color="accent" selected="true"> Test validé</mat-chip>
+                </mat-chip-list>
+                <mat-chip-list  *ngIf="fresenius.status == 'test non validé'">
+                        <mat-chip id="mat-chip-state-unvalide" color="accent" selected="true"> Test non validé</mat-chip>
+                </mat-chip-list>
+                <button mat-raised-button color="primary" (click)="informationViewOpendialog()">Voir les informations</button>
+        </div>
+        <div class="action">
+                <button mat-raised-button color="primary" id="update-information" (click)="informationUpdateOpendialog()">Modifier les informations</button>
+                <button mat-raised-button color="primary" (click)="stateUpdateOpendialog()" id="update-state">Modifier le status</button>
+        </div>
+    </div>
+    <div class="col-lg-12 data">
+            <div class="col-lg-12 title twelve">
+                    <h3>RAPPORT D'INTERVENTION - CLIENT : <span class="spanNormal">{{ fresenius.client_name}}</span></h3>
+            </div>
+            <div class="col-lg-6 leftData">
+                <div class="col-lg-6 left margBottom">
+                <span class="spanBold">Point Facturé :</span>
+                </div>
+                
+                <div class="col-lg-6 right margBottom">
+                        <span class="spanNormal"> {{ fresenius.bill_point}}</span>
+                </div>
+            </div>
+            <div class="col-lg-6 rightData">
+                <div class="col-lg-6 six left margBottom">
+                        <span class="spanBold">Point livré : </span>
+                </div>
+                <div class="col-lg-6 six margBottom padding">
+                        <span class="spanNormal"> {{ fresenius.deliver_point}}</span>
+                </div>
+           </div>
+           <div class="col-lg-12 twelve">
+                    <div class="col-lg-6 left margBottom">
+                        <span class="spanBold"> N° de Cde Client :</span>
+                    </div>
+                    <div class="col-lg-6 right margBottom">
+                        <span class="spanNormal"> {{ fresenius.client_code_number}}</span>
+                   </div>
+         </div>
+         <div class="col-lg-12 leftData">
+                   <div class="col-lg-6 left margBottom">
+                        <span class="spanBold"> N° d'ordre SAP :</span>
+                   </div>
+                  <div class="col-lg-6 right margBottom">
+                        <span class="spanNormal"> {{ fresenius.sap_order_number}}</span>
+                  </div>
+        </div>
+        <div class="col-lg-6 rightData">
+                <div class="col-lg-6 six left margBottom">
+                        <span class="spanBold"> Date de réception :</span>
+                </div>
+                <div class="col-lg-6 six margBottom padding">
+                        <span class="spanNormal">  {{ fresenius.receipt_date}}</span>
+                </div>
+        </div>
+        <div class="col-lg-12 full">
+                  <div class="col-lg-12 margBottom">
+                        <span class="spanBold">  N° de clôture :</span>
+                  </div>
+            
+        </div>
+    </div>
+    <div class="col-lg-12 hr">
+    </div>
+    <div class="col-lg-12 product">
+        <div class="col-lg-6 leftProduct">
+                <div class="col-lg-9 nine paddingRight0 margBottom">
+                        <span class="spanBold">Type :</span> &nbsp;
+                                <span class="spanNormal"> {{ fresenius.fresenius_type}}</span>
+                </div>
+                <div class="col-lg-3 three paddingRight0 paddingLeft0 customAlignRight margBottom">
+                        <span class="spanBold">Appareil N° : </span>
+                </div>
+                <div class="col-lg-12 twelve margBottom">
+                <span class="spanBold">N° BIO / N° UA </span><span class="italic2">(1) ..................................................</span> 
+                </div>
+                <div class="col-lg-5 five margBottom">
+                        <span class="spanBold">Garantie</span>
+                </div>
+                <div class="col-lg-7 seven margBottom">
+                        <span class="spanNormal">expirée</span>
+                </div>
+                
+                <div class="col-lg-5 five margBottom">
+                        <span class="spanBold">Garantie SAV </span><span class="italic2">(2)</span>
+                </div>
+                <div class="col-lg-3 three margBottom">
+                        <span class="spanNormal">  [_] &nbsp; OUI</span>
+                </div>
+                <div class="col-lg-4 four margBottom">
+                <span class="spanNormal"> [_]&nbsp; NON</span>
+                </div>
+                
+                <div class="col-lg-12 twelve margBottom">
+                <span class="spanBold">Devis N°: </span><span class="italic2">(3)</span>
+                </div>
+                <div class="col-lg-12 vide margBottom">
+                </div>
+                <div class="col-lg-10 ten margBottom">
+                        <span class="spanBold">Accessoires livrés avec l'appareil </span><span class="italic2">(1)</span>
+                </div>
+                <div class="col-lg-2 margBottom marginLeft4">
+                        <span class="spanNormal">
+                                [_] &nbsp; CS
+                                </span>
+                </div>
+                </div>
+                <div class="col-lg-6 rightProduct">
+                        <div class="col-lg-6 six margBottom paddingLeft36">
+                                <span class="spanNormal"> {{ fresenius.device_number}} </span>
+                        </div>
+                        <div class="col-lg-6 six margBottom padding">
+                                <span class="spanBold">Code produit<span class="italic2">(1)</span> : </span>  &nbsp;
+                                <span class="spanNormal"> {{ fresenius.product_code}} </span>
+                        </div>
+                        <div class="col-lg-12 padding twelve margBottom">
+                                <span class="spanBold">N° d'entrée </span><span class="italic2">(1) ....................................................</span>
+                        </div>
+                        <div class="col-lg-12 padding twelve margBottom">
+                                <span class="spanBold">Contrat de maintenance N°: </span><span class="italic2">(3)</span>
+                        </div>
+        
+                        <div class="col-lg-12 padding twelve margBottom">
+                                <span class="spanBold">
+                                                [_] &nbsp; Forfait de réparation </span><span class="italic2">(3)</span>
+                        </div>
+                        <div class="col-lg-4 padding four margBottom">
+                                <span class="spanBold">
+                                        [_] &nbsp; Accepté</span>
+                        </div>
+                        <div class="col-lg-8 padding cancel-col-lg-8 height margBottomThree">
+                                        
+                                <span class="spanBold">
+                                                [_] &nbsp; Refusé le : ........ / ....... / ........</span>
+                        </div>
+                        <div class="col-lg-6 padding six margBottom">
+                                <span class="spanBold">Montant</span><span class="italic2">(1)</span>
+                        </div>
+                        <div class="col-lg-6 padding six margBottom">&nbsp;
+                                <span class="spanNormal">0.00</span>
+                        </div>
+                        <div class="col-lg-2 padding two margBottom">
+                                        <span class="spanNormal">
+                                                        [_] &nbsp; DET
+                                                </span>
+                        </div>
+                        <div class="col-lg-2 padding two margBottom">
+                                        <span class="spanNormal">
+                                                [_] &nbsp; SUP
+                                                </span>
+                        </div>
+                        <div class="col-lg-2 padding two margBottom">
+                                        <span class="spanNormal">
+                                                [_] &nbsp; CH
+                                                </span>
+                        </div>
+                        <div class="col-lg-2 padding two margBottom">
+                                        <span class="spanNormal">
+                                                [_]&nbsp; Autre
+                                                </span>
+                        </div>
+                        
+                </div>
+                <div class="col-lg-6 bottomLeftImportant">
+                        <div class="col-lg-5 five margBottom">
+                                <p class="italic">(1) Facultatif</p>
+                        </div>
+                        <div class="col-lg-7 seven margBottom">
+                                        <p class="italic"> &nbsp;(2) Cocher les cases correspondantes</p>
+                        </div>
+                </div>
+                <div class="col-lg-6 bottomRightImportant">
+                        <div class="col-lg-2 padding two margBottom">
+                        </div>
+                        <div class="col-lg-10 padding ten margBottom">
+                                        
+                                <p class="italic">(3) Si applicable</p>
+                        </div>
+                </div>
+    </div>
+    <div class="col-lg-12 hr">
+    </div>
+    <div class="col-lg-12 panne">
+        <div class="col-lg-12 twelve height35px">
+                <div class="col-lg-3">
+                        <span class="spanBold">Défaut déclaré :   </span>
+                </div>
+                <div class="col-lg-9 paddingLeft0">
+                        <span class="spanNormal"> {{fresenius.declared_defect}}   </span>
+                </div>
+        </div>
+        <div class="col-lg-12 twelve height40px">
+                <div class="col-lg-3">
+                        <span class="spanBold">Défaut Constaté - Observations : </span>
+                </div>
+                <div class="col-lg-9">
+                        <span class="spanNormal"> {{fresenius.defect_found}}   </span>
+                </div>
+        </div>
+        <div class="col-lg-12 twelve height90px">
+                <div class="col-lg-12 twelve height13px">
+                        <span class="spanBold">Intervention : </span>
+                </div>
+                <div class="col-lg-12 twelve">
+                        <div class="interventionBorder">
+                                <span class="spanNormal"> {{fresenius.interventionLine1}} </span>
+                        </div>
+                </div>
+                <div class="col-lg-12 twelve">
+                        <div class="interventionBorder">
+                                <span class="spanNormal"> {{fresenius.interventionLine2}} </span>
+                        </div>
+                </div>
+                <div class="col-lg-12 twelve">
+                        <div class="interventionBorder">
+                        <span class="spanNormal"> {{fresenius.interventionLine3}} </span>
+                        </div>
+                </div>
+        </div>
+        <div class="col-lg-12 twelve height28px">
+                <div class="col-lg-4">
+                        <span class="spanBold">Temps passé  </span>
+                </div>
+                <div class="col-lg-3 interventionBorder">
+                        <span class="spanNormal">{{fresenius.past_time}} </span> 
+                </div>
+        </div>
+        <div class="col-lg-12">
+                <div class="col-lg-12 height19px twelve">
+                        <span class="spanBold">Codification panne </span> 
+                        <span class="spanNormalCodification">.......... , .......... , .......... , ......... , .......... </span>
+                </div>
+                <div class="col-lg-12 height35px">
+                        <span class="spanNormal"> 5 codes maximum  </span>
+                </div>
+        </div>
+    </div>
+    <div class="col-lg-12 piece twelve">
+            <div class="col-lg-12 height26px">
+                <div class="col-lg-12 title">
+                        <h4 class="pieceChangeTitle">Changement de pièces :</h4>
+                </div>
+            </div>
+            <div class="col-lg-12 table">
+                <mat-table [dataSource]="dataSource">
+                        <ng-container matColumnDef="quantity">
+                                <mat-header-cell *matHeaderCellDef> QTE </mat-header-cell>
+                                <mat-cell *matCellDef="let piece"> {{piece.quantity}} </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="reference_name">
+                                <mat-header-cell *matHeaderCellDef> REFERENCE </mat-header-cell>
+                                <mat-cell *matCellDef="let piece"> {{piece.reference_name}} </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="description">
+                                <mat-header-cell *matHeaderCellDef> DESCRIPTION </mat-header-cell>
+                                <mat-cell *matCellDef="let piece"> {{piece.description}} </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="lot_number">
+                                <mat-header-cell *matHeaderCellDef> N° LOT (3) </mat-header-cell>
+                                <mat-cell *matCellDef="let piece"> {{piece.lot_number}} </mat-cell>
+                        </ng-container>
+                        <mat-header-row *matHeaderRowDef="displayedColumns" class="pieceList-mat-header-row"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;" class="pieceList-mat-row"></mat-row>
+                </mat-table>
+           </div>
+    </div>
+    <div class="col-lg-12 hr marginTop109px" *ngIf="myData2.length != 0">
+        </div>
+    <div class="col-lg-12 data data2" *ngIf="myData2.length != 0">
+                <div class="col-lg-12 title twelve">
+                        <h3>RAPPORT D'INTERVENTION - CLIENT : <span class="spanNormal">{{ fresenius.client_name}}</span></h3>
+                </div>
+                <div class="col-lg-6 leftData">
+                    <div class="col-lg-6 left margBottom">
+                    <span class="spanBold">Point Facturé :</span>
+                    </div>
+                    
+                    <div class="col-lg-6 right margBottom">
+                            <span class="spanNormal"> {{ fresenius.bill_point}}</span>
+                    </div>
+                </div>
+                <div class="col-lg-6 rightData">
+                    <div class="col-lg-6 six left margBottom">
+                            <span class="spanBold">Point livré : </span>
+                    </div>
+                    <div class="col-lg-6 six margBottom padding">
+                            <span class="spanNormal"> {{ fresenius.deliver_point}}</span>
+                    </div>
+               </div>
+               <div class="col-lg-12 twelve">
+                        <div class="col-lg-6 left margBottom">
+                            <span class="spanBold"> N° de Cde Client :</span>
+                        </div>
+                        <div class="col-lg-6 right margBottom">
+                            <span class="spanNormal"> {{ fresenius.client_code_number}}</span>
+                       </div>
+             </div>
+             <div class="col-lg-12 leftData">
+                       <div class="col-lg-6 left margBottom">
+                            <span class="spanBold"> N° d'ordre SAP :</span>
+                       </div>
+                      <div class="col-lg-6 right margBottom">
+                            <span class="spanNormal"> {{ fresenius.sap_order_number}}</span>
+                      </div>
+            </div>
+            <div class="col-lg-6 rightData">
+                    <div class="col-lg-6 six left margBottom">
+                            <span class="spanBold"> Date de réception :</span>
+                    </div>
+                    <div class="col-lg-6 six margBottom padding">
+                            <span class="spanNormal">  {{ fresenius.receipt_date}}</span>
+                    </div>
+            </div>
+            <div class="col-lg-12 full">
+                      <div class="col-lg-12 margBottom">
+                            <span class="spanBold">  N° de clôture :</span>
+                      </div>
+                
+            </div>
+        </div>
+        <div class="col-lg-12 hr" *ngIf="myData2.length != 0">
+        </div>
+        <div class="col-lg-12 product product2" *ngIf="myData2.length != 0">
+            <div class="col-lg-6 leftProduct">
+                    <div class="col-lg-9 nine paddingRight0 margBottom">
+                            <span class="spanBold">Type :</span> &nbsp;
+                                    <span class="spanNormal"> {{ fresenius.fresenius_type}}</span>
+                    </div>
+                    <div class="col-lg-3 three paddingRight0 paddingLeft0 customAlignRight margBottom">
+                            <span class="spanBold">Appareil N° : </span>
+                    </div>
+                <div class="col-lg-12 twelve margBottom">
+                    <span class="spanBold">N° BIO / N° UA </span><span class="italic2">(1) ..................................................</span> 
+                </div>
+                    <div class="col-lg-5 five margBottom">
+                          <span class="spanBold">Garantie</span>
+                    </div>
+                    <div class="col-lg-7 seven margBottom">
+                            <span class="spanNormal">expirée</span>
+                    </div>
+                
+                    <div class="col-lg-5 five margBottom">
+                            <span class="spanBold">Garantie SAV </span><span class="italic2">(2)</span>
+                    </div>
+                    <div class="col-lg-3 three margBottom">
+                            <span class="spanNormal">  [_] &nbsp; OUI</span>
+                    </div>
+                    <div class="col-lg-4 four margBottom">
+                    <span class="spanNormal"> [_]&nbsp; NON</span>
+                    </div>
+                
+                <div class="col-lg-12 twelve margBottom">
+                    <span class="spanBold">Devis N°: </span><span class="italic2">(3)</span>
+                </div>
+                <div class="col-lg-12 vide margBottom">
+                </div>
+                    <div class="col-lg-10 ten margBottom">
+                            <span class="spanBold">Accessoires livrés avec l'appareil </span><span class="italic2">(1)</span>
+                    </div>
+                    <div class="col-lg-2 margBottom marginLeft4">
+                                    <span class="spanNormal">
+                                            [_] &nbsp; CS
+                                            </span>
+                    </div>
+            </div>
+            <div class="col-lg-6 rightProduct">
+                    <div class="col-lg-6 six margBottom paddingLeft36">
+                         <span class="spanNormal"> {{ fresenius.device_number}} </span>
+                    </div>
+                    <div class="col-lg-6 six margBottom padding">
+                         <span class="spanBold">Code produit<span class="italic2">(1)</span> : </span>  &nbsp;
+                         <span class="spanNormal"> {{ fresenius.product_code}} </span>
+                    </div>
+                    <div class="col-lg-12 padding twelve margBottom">
+                            <span class="spanBold">N° d'entrée </span><span class="italic2">(1) ....................................................</span>
+                    </div>
+                    <div class="col-lg-12 padding twelve margBottom">
+                            <span class="spanBold">Contrat de maintenance N°: </span><span class="italic2">(3)</span>
+                    </div>
+    
+                    <div class="col-lg-12 padding twelve margBottom">
+                            <span class="spanBold">
+                                            [_] &nbsp; Forfait de réparation </span><span class="italic2">(3)</span>
+                    </div>
+                    <div class="col-lg-4 padding four margBottom">
+                            <span class="spanBold">
+                                    [_] &nbsp; Accepté</span>
+                    </div>
+                    <div class="col-lg-8 padding cancel-col-lg-8 height margBottomThree">
+                                  
+                            <span class="spanBold">
+                                            [_] &nbsp; Refusé le : ........ / ....... / ........</span>
+                    </div>
+                    <div class="col-lg-6 padding six margBottom">
+                            <span class="spanBold">Montant</span><span class="italic2">(1)</span>
+                    </div>
+                    <div class="col-lg-6 padding six margBottom">&nbsp;
+                            <span class="spanNormal">0.00</span>
+                    </div>
+                    <div class="col-lg-2 padding two margBottom">
+                                    <span class="spanNormal">
+                                                    [_] &nbsp; DET
+                                            </span>
+                    </div>
+                    <div class="col-lg-2 padding two margBottom">
+                                    <span class="spanNormal">
+                                            [_] &nbsp; SUP
+                                            </span>
+                    </div>
+                    <div class="col-lg-2 padding two margBottom">
+                                    <span class="spanNormal">
+                                            [_] &nbsp; CH
+                                            </span>
+                    </div>
+                    <div class="col-lg-2 padding two margBottom">
+                                    <span class="spanNormal">
+                                            [_]&nbsp; Autre
+                                            </span>
+                    </div>
+                   
+            </div>
+            <div class="col-lg-6 bottomLeftImportant">
+                    <div class="col-lg-5 five margBottom">
+                            <p class="italic">(1) Facultatif</p>
+                    </div>
+                    <div class="col-lg-7 seven margBottom">
+                                    <p class="italic"> &nbsp;(2) Cocher les cases correspondantes</p>
+                    </div>
+            </div>
+            <div class="col-lg-6 bottomRightImportant">
+                    <div class="col-lg-2 padding two margBottom">
+                    </div>
+                    <div class="col-lg-10 padding ten margBottom">
+                                   
+                            <p class="italic">(3) Si applicable</p>
+                    </div>
+            </div>
+        </div>
+        <div class="col-lg-12 hr" *ngIf="myData2.length != 0">
+        </div>
+    <div class="col-lg-12 piece twelve" *ngIf="myData2.length != 0">
+        <div class="col-lg-12 height26px">
+                <div class="col-lg-12 title">
+                        <h4 class="pieceChangeTitle">Changement de pièces :</h4>
+                </div>
+        </div>
+        <div class="col-lg-12 table">
+                <mat-table [dataSource]="dataSource2">
+                        <ng-container matColumnDef="quantity">
+                                <mat-header-cell *matHeaderCellDef> QTE </mat-header-cell>
+                                <mat-cell *matCellDef="let piece"> {{piece.quantity}} </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="reference_name">
+                                <mat-header-cell *matHeaderCellDef> REFERENCE </mat-header-cell>
+                                <mat-cell *matCellDef="let piece"> {{piece.reference_name}} </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="description">
+                                <mat-header-cell *matHeaderCellDef> DESCRIPTION </mat-header-cell>
+                                <mat-cell *matCellDef="let piece"> {{piece.description}} </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="lot_number">
+                                <mat-header-cell *matHeaderCellDef> N° LOT (3) </mat-header-cell>
+                                <mat-cell *matCellDef="let piece"> {{piece.lot_number}} </mat-cell>
+                        </ng-container>
+                        <mat-header-row *matHeaderRowDef="displayedColumns" class="pieceList-mat-header-row"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;" class="pieceList-mat-row"></mat-row>
+                </mat-table>
+        </div>
+   </div>
+</div>
+
+
+<!--
+<div class="freseniusDetails-container">
+        <div class="form-group">
+              <div class="left">
+                  <img src="assets/image/freseniusLogo.png" alt="Logo fresenius" />
+              </div>
+              <div class="middle">
+              </div>
+              <div class="right">
+              </div>
+        </div>
+        <div class="form-group">
+              <div class="title">
+
+                  <h3>RAPPORT D'inter</h3>
+              </div>
+        </div>
+        <div class="breakdown">
+
+
+        </div>
+
+</div>-->

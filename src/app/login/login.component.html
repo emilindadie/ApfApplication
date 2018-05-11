@@ -1,0 +1,41 @@
+<div class="login-container">
+    <div class="login-form">
+        <form [formGroup]="myForm" (ngSubmit)="logUser(myForm.value)">
+          <div class="form-group login-email-input" [ngClass]="{'has-error':!myForm.controls['email'].valid && myForm.controls['email'].touched}">
+                <div>
+                <mat-form-field class="demo-full-width">
+                    <input matInput placeholder="Email" class="form-control" required name="email" [formControl]="myForm.controls['email']">
+                </mat-form-field>
+                </div>
+                <div class="error">
+                <span *ngIf="myForm.controls['email'].hasError('required') && myForm.controls['email'].touched && !myForm.submitted" class="required pull-middle">Entrer une adresse email</span>
+                <span *ngIf="myForm.controls['email'].hasError('pattern') && myForm.controls['email'].touched" class="required pull-middle">*adresse email invalide</span>
+                </div>
+            </div>
+          <div class="form-group login-password-input" [ngClass]="{'has-error':!myForm.controls['password'].valid && myForm.controls['password'].touched}">
+                 <div>
+                <mat-form-field class="demo-full-width">
+                    <input matInput placeholder="Password" class="form-control" type="password" required name="password" [formControl]="myForm.controls['password']">
+                </mat-form-field>
+                </div>
+                <div class="error">
+                <span *ngIf="myForm.controls['password'].hasError('required') && myForm.controls['password'].touched && !myForm.submitted" class="required pull-middle">Entrer un mot de passe</span>
+                </div>
+            </div>
+          <div class="login-submit-button">
+                <mat-card class="login-mat-card">
+                    <button mat-raised-button color="primary" type="submit" [disabled]="!myForm.valid">Connexion</button>
+                </mat-card>
+          </div>
+        </form> 
+    </div>
+    <div class="login-link-container">
+            <button mat-button><a routerLink="/sign-up" routerLinkActive="active">Inscription</a></button>
+            <button mat-button><a routerLink="/home" routerLinkActive="active">Home</a></button>
+    </div>
+</div>
+
+
+
+
+

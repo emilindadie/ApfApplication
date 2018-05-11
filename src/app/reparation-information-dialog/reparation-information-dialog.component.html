@@ -1,0 +1,27 @@
+<div class="reparation-information-dialog-container">
+    <div class="col-lg-12 full reparator">
+          <h4>Reparateur</h4>
+          <div class="title"><span>Prenom :</span></div> <div class="title-result"><span>{{reparator.firstName}}</span></div>
+          <div class="title"><span>Nom :</span></div><div><span>{{reparator.lastName}}</span></div>
+          <div class="title"><span>Date de reparation :</span></div><div class="title-result"><span>{{fresenius.fresenius_date}}</span></div>
+    </div>
+    <div class="col-lg-12 full test_validator" *ngIf="test_validator != 'no user'">
+          <h4>Validateur du test</h4> 
+          <div class="title"><span>Prenom :</span></div> <div class="title-result"><span>{{test_validator.firstName}}</span></div>
+          <div class="title"><span>Nom :</span></div><div class="title-result"><span>{{test_validator.lastName}}</span></div>
+          <div class="title"><span>date de validation du test :</span></div> <div class="title-result"><span>{{fresenius.test_validation_date}}</span></div>
+    </div>
+    <div class="col-lg-12 full send_validator" *ngIf="send_validator != 'no user'">
+            <h4>Validateur de l'envoi</h4> 
+            <div class="title"><span>Prenom :</span></div> <div class="title-result"><span>{{send_validator.firstName}}</span></div>
+          <div class="title"><span>Nom :</span></div><div class="title-result"><span>{{send_validator.lastName}}</span></div>
+          <div class="title"><span>date de validation de l'envoi:</span></div> <div class="title-result"><span>{{fresenius.send_validation_date}}</span></div>
+    </div> 
+    <div class="col-lg-12 full last_modificator" *ngIf="last_modificator != 'no user'">
+      <h4>Dernière modification</h4> 
+      <div class="title"><span>Prenom :</span></div> <div class="title-result"><span>{{last_modificator.firstName}}</span></div>
+      <div class="title"><span>Nom :</span></div><div class="title-result"><span>{{last_modificator.lastName}}</span></div>
+      <div class="title"><span>date de la dernier modification:</span></div> <div class="title-result"><span>{{fresenius.last_modification_date}}</span></div>
+    </div> 
+</div>
+

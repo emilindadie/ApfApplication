@@ -1,0 +1,307 @@
+<app-header></app-header>
+<div class="fresenius-container">
+        <form [formGroup]="myForm" (ngSubmit)="repairFresenius(myForm.value)">
+            <div class="top-container">
+            <div class="product-container">
+                <div class="fresenius-title">
+                    <h3>Nouveau produit</h3>
+                </div>
+                <div class="form-group">
+                    <div class="form-group product-client-name-container" [ngClass]="{'has-error':!myForm.controls['client_name'].valid && myForm.controls['client_name'].touched}">
+                        <mat-form-field class="demo-full-width fresenius-mat-form-field-product">
+                                <input matInput placeholder="Nom du client" class="form-control" required name="client_name" [formControl]="myForm.controls['client_name']">
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group product-bill-point-container" [ngClass]="{'has-error':!myForm.controls['bill_point'].valid && myForm.controls['bill_point'].touched}"> 
+                        <mat-form-field class="demo-full-width fresenius-mat-form-field-product">
+                                <input matInput placeholder="Points facturé" class="form-control" required name="bill_point" [formControl]="myForm.controls['bill_point']">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-group product-deliver-point-container" [ngClass]="{'has-error':!myForm.controls['deliver_point'].valid && myForm.controls['deliver_point'].touched}">
+                        <mat-form-field class="demo-full-width fresenius-mat-form-field-product">
+                                <input matInput placeholder="point livré" class="form-control" required name="deliver_point" [formControl]="myForm.controls['deliver_point']">
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group product-client-code-number-container" [ngClass]="{'has-error':!myForm.controls['client_code_number'].valid && myForm.controls['client_code_number'].touched}"> 
+                        <mat-form-field class="demo-full-width fresenius-mat-form-field-product">
+                                <input matInput placeholder="N° Code client" class="form-control" required name="client_code_number" [formControl]="myForm.controls['client_code_number']">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-group product-sap-order-number-container" [ngClass]="{'has-error':!myForm.controls['sap_order_number'].valid && myForm.controls['sap_order_number'].touched}">
+                        <mat-form-field class="demo-full-width fresenius-mat-form-field-product">
+                                <input matInput placeholder="N° d'ordre SAP" class="form-control" required name="sap_order_number" [formControl]="myForm.controls['sap_order_number']">
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group product-receipt-date-container" [ngClass]="{'has-error':!myForm.controls['receipt_date'].valid && myForm.controls['receipt_date'].touched}"> 
+                        <mat-form-field class="demo-full-width fresenius-mat-form-field-product">
+                                <input matInput placeholder="Date de reception" class="form-control" required name="receipt_date" [formControl]="myForm.controls['receipt_date']">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-group product-type-container" [ngClass]="{'has-error':!myForm.controls['fresenius_type'].valid && myForm.controls['fresenius_type'].touched}">
+                        <mat-form-field class="demo-full-width fresenius-mat-form-field-product">
+                                <input matInput placeholder="Type" class="form-control" required name="fresenius_type" [formControl]="myForm.controls['fresenius_type']">
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group product-device-number-container" [ngClass]="{'has-error':!myForm.controls['device_number'].valid && myForm.controls['device_number'].touched}"> 
+                        <mat-form-field class="demo-full-width fresenius-mat-form-field-product">
+                                <input matInput placeholder="Appareil N°" class="form-control" required name="device_number" [formControl]="myForm.controls['device_number']">
+                        </mat-form-field>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="form-group product-pro-code-container" [ngClass]="{'has-error':!myForm.controls['product_code'].valid && myForm.controls['product_code'].touched}">
+                        <mat-form-field class="demo-full-width fresenius-mat-form-field-product"> 
+                            <input (keypress)="_keyPress($event)" matInput placeholder="Code produit" class="form-control"  required name="product_code" [formControl]="myForm.controls['product_code']">
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group product-bio-number-container" [ngClass]="{'has-error':!myForm.controls['bio_number'].valid && myForm.controls['bio_number'].touched}">
+                        <mat-form-field class="demo-full-width fresenius-mat-form-field-product">
+                            <input matInput placeholder="N° Bio /N UA" class="form-control"  name="bio_number" [formControl]="myForm.controls['bio_number']">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-group product-entry-number-container" [ngClass]="{'has-error':!myForm.controls['entry_number'].valid && myForm.controls['entry_number'].touched}">
+                            <mat-form-field class="demo-full-width fresenius-mat-form-field-product">
+                                <input matInput placeholder="N° d'entré" class="form-control" name="entry_number" [formControl]="myForm.controls['entry_number']">
+                            </mat-form-field>
+                    </div>
+                    <div class="form-group product-declared-defect-container" [ngClass]="{'has-error':!myForm.controls['declared_defect'].valid && myForm.controls['declared_defect'].touched}">
+                            <mat-form-field class="demo-full-width fresenius-mat-form-field-product">
+                                <textarea matInput placeholder="Défaut déclaré" class="form-control"  required name="declared_defect" [formControl]="myForm.controls['declared_defect']"></textarea>
+                            </mat-form-field>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-group product-defect-found-container" [ngClass]="{'has-error':!myForm.controls['defect_found'].valid && myForm.controls['defect_found'].touched}">
+                            <mat-form-field class="demo-full-width fresenius-mat-form-field-product">
+                                <textarea matInput placeholder="Défaut constaté - Observation" class="form-control"  required name="defect_found" [formControl]="myForm.controls['defect_found']"></textarea>
+                            </mat-form-field>
+                    </div>
+                </div>
+                <div class="form-group">
+                        <div class="fomr-group product-intervention-container" [ngClass]="{'has-error':!myForm.controls['intervention'].valid && myForm.controls['intervention'].touched}">
+                            <mat-form-field class="demo-full-width fresenius-mat-form-field-product">
+                                <textarea matInput placeholder="Intervention" class="form-control"  required name="intervention" [formControl]="myForm.controls['intervention']"></textarea>
+                            </mat-form-field>
+                        </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-group product-past-time-container" [ngClass]="{'has-error':!myForm.controls['past_time'].valid && myForm.controls['past_time'].touched}">
+                        <mat-form-field class="demo-full-width fresenius-mat-form-field-product">
+                            <input matInput placeholder="Temps passé" class="form-control"  required name="past_time" [formControl]="myForm.controls['past_time']">
+                        </mat-form-field>
+                    </div>
+                </div>
+        
+            </div>
+            
+            <div class="new-piece-container">
+                <div class="new-piece-title">
+                    <h3>Piece detachés</h3>
+                </div>
+                
+                <div class="form-group">
+                    <div class="form-group new-piece-reference-container" id="divPiece1" [ngClass]="{'has-error':!myForm.controls['piece_reference_name1'].valid && myForm.controls['piece_reference_name1'].touched}">
+                        <mat-form-field>
+                            <mat-select placeholder="Référence de la pièce 1" [formControl]="myForm.controls['piece_reference_name1']" required>
+                              <mat-option>--</mat-option>
+                              <mat-option *ngFor="let piece of pieces" [value]="piece">
+                              <span>référence : {{piece.reference_name}}</span>   <span *ngIf='piece.lot_number != ""' class="floatRight">lot : {{piece.lot_number}}</span>  
+                              </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="myForm.controls['piece_reference_name1'].hasError('required')">Choisissez au moins une pièces</mat-error>
+                           <mat-hint>{{myForm.controls['piece_reference_name1'].value?.reference_name}}</mat-hint>
+                        </mat-form-field>
+                    </div>
+                    
+                    <div class="form-group new-piece-reference-container" id="divPiece2"  [ngClass]="{'has-error':!myForm.controls['piece_reference_name2'].valid}">
+                        <mat-form-field>
+                            <mat-select placeholder="Référence de la pièce 2" [formControl]="myForm.controls['piece_reference_name2']">
+                              <mat-option>--</mat-option>
+                              <mat-option *ngFor="let piece of pieces" [value]="piece">
+                              <span>référence : {{piece.reference_name}}</span>   <span *ngIf='piece.lot_number != ""' class="floatRight">lot : {{piece.lot_number}}</span>  
+                                </mat-option>
+                            </mat-select>
+                           <mat-hint>{{myForm.controls['piece_reference_name2'].value?.reference_name}}</mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group new-piece-reference-container" id="divPiece3" [ngClass]="{'has-error':!myForm.controls['piece_reference_name3'].valid && myForm.controls['piece_reference_name3'].touched}">
+                        <mat-form-field>
+                            <mat-select placeholder="Référence de la pièce 3" [formControl]="myForm.controls['piece_reference_name3']">
+                              <mat-option>--</mat-option>
+                              <mat-option *ngFor="let piece of pieces" [value]="piece">
+                              <span>référence : {{piece.reference_name}}</span>   <span *ngIf='piece.lot_number != ""' class="floatRight">lot : {{piece.lot_number}}</span>  
+                                </mat-option>
+                            </mat-select>
+                           <mat-hint>{{myForm.controls['piece_reference_name3'].value?.reference_name}}</mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group new-piece-reference-container" id="divPiece4" [ngClass]="{'has-error':!myForm.controls['piece_reference_name4'].valid && myForm.controls['piece_reference_name4'].touched}">
+                        <mat-form-field>
+                            <mat-select placeholder="Référence de la pièce 4" [formControl]="myForm.controls['piece_reference_name4']">
+                              <mat-option>--</mat-option>
+                              <mat-option *ngFor="let piece of pieces" [value]="piece">
+                                <span>référence : {{piece.reference_name}}</span>   <span *ngIf='piece.lot_number != ""' class="floatRight">lot : {{piece.lot_number}}</span>  
+                            </mat-option>
+                            </mat-select>
+                           <mat-hint>{{myForm.controls['piece_reference_name4'].value?.reference_name}}</mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group new-piece-reference-container" id="divPiece5" [ngClass]="{'has-error':!myForm.controls['piece_reference_name5'].valid && myForm.controls['piece_reference_name5'].touched}">
+                        <mat-form-field>
+                            <mat-select placeholder="Référence de la pièce 5" [formControl]="myForm.controls['piece_reference_name5']">
+                              <mat-option>--</mat-option>
+                              <mat-option *ngFor="let piece of pieces" [value]="piece">
+                              <span>référence : {{piece.reference_name}}</span>   <span *ngIf='piece.lot_number != ""' class="floatRight">lot : {{piece.lot_number}}</span>  
+                              </mat-option>
+                            </mat-select>
+                           <mat-hint>{{myForm.controls['piece_reference_name5'].value?.reference_name}}</mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group new-piece-reference-container" id="divPiece6" [ngClass]="{'has-error':!myForm.controls['piece_reference_name6'].valid && myForm.controls['piece_reference_name6'].touched}">
+                        <mat-form-field>
+                            <mat-select placeholder="Référence de la pièce 6" [formControl]="myForm.controls['piece_reference_name6']">
+                              <mat-option>--</mat-option>
+                              <mat-option *ngFor="let piece of pieces" [value]="piece">
+                              <span>référence : {{piece.reference_name}}</span>   <span *ngIf='piece.lot_number != ""' class="floatRight">lot : {{piece.lot_number}}</span>  
+                              </mat-option>
+                            </mat-select>
+                           <mat-hint>{{myForm.controls['piece_reference_name6'].value?.reference_name}}</mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group new-piece-reference-container" id="divPiece7" [ngClass]="{'has-error':!myForm.controls['piece_reference_name7'].valid && myForm.controls['piece_reference_name7'].touched}">
+                        <mat-form-field>
+                            <mat-select placeholder="Référence de la pièce 7" [formControl]="myForm.controls['piece_reference_name7']">
+                              <mat-option>--</mat-option>
+                              <mat-option *ngFor="let piece of pieces" [value]="piece">
+                              <span>référence : {{piece.reference_name}}</span>   <span *ngIf='piece.lot_number != ""' class="floatRight">lot : {{piece.lot_number}}</span>  
+                              </mat-option>
+                            </mat-select>
+                           <mat-hint>{{myForm.controls['piece_reference_name7'].value?.reference_name}}</mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group new-piece-reference-container" id="divPiece8" [ngClass]="{'has-error':!myForm.controls['piece_reference_name8'].valid && myForm.controls['piece_reference_name8'].touched}">
+                        <mat-form-field>
+                            <mat-select placeholder="Référence de la pièce 8" [formControl]="myForm.controls['piece_reference_name8']">
+                              <mat-option>--</mat-option>
+                              <mat-option *ngFor="let piece of pieces" [value]="piece">
+                              <span>référence : {{piece.reference_name}}</span>   <span *ngIf='piece.lot_number != ""' class="floatRight">lot : {{piece.lot_number}}</span>  
+                                </mat-option>
+                            </mat-select>
+                           <mat-hint>{{myForm.controls['piece_reference_name8'].value?.reference_name}}</mat-hint>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group new-piece-reference-container" id="divPiece9" [ngClass]="{'has-error':!myForm.controls['piece_reference_name9'].valid && myForm.controls['piece_reference_name9'].touched}">
+                            <mat-form-field>
+                                <mat-select placeholder="Référence de la pièce 9" [formControl]="myForm.controls['piece_reference_name9']">
+                                  <mat-option>--</mat-option>
+                                  <mat-option *ngFor="let piece of pieces" [value]="piece">
+                                  <span>référence : {{piece.reference_name}}</span>   <span *ngIf='piece.lot_number != ""' class="floatRight">lot : {{piece.lot_number}}</span>  
+                                    </mat-option>
+                                </mat-select>
+                               <mat-hint>{{myForm.controls['piece_reference_name9'].value?.reference_name}}</mat-hint>
+                            </mat-form-field>
+                    </div>
+                    <div class="form-group new-piece-reference-container" id="divPiece10" [ngClass]="{'has-error':!myForm.controls['piece_reference_name10'].valid && myForm.controls['piece_reference_name10'].touched}">
+                            <mat-form-field>
+                                <mat-select placeholder="Référence de la pièce 10" [formControl]="myForm.controls['piece_reference_name10']">
+                                  <mat-option>--</mat-option>
+                                  <mat-option *ngFor="let piece of pieces" [value]="piece">
+                                  <span>référence : {{piece.reference_name}}</span>   <span *ngIf='piece.lot_number != ""' class="floatRight">lot : {{piece.lot_number}}</span>  
+                                    </mat-option>
+                                </mat-select>
+                               <mat-hint>{{myForm.controls['piece_reference_name10'].value?.reference_name}}</mat-hint>
+                            </mat-form-field>
+                    </div>
+                    <div class="form-group new-piece-reference-container" id="divPiece11" [ngClass]="{'has-error':!myForm.controls['piece_reference_name11'].valid && myForm.controls['piece_reference_name11'].touched}">
+                            <mat-form-field>
+                                <mat-select placeholder="Référence de la pièce 11" [formControl]="myForm.controls['piece_reference_name11']">
+                                  <mat-option>--</mat-option>
+                                  <mat-option *ngFor="let piece of pieces" [value]="piece">
+                                  <span>référence : {{piece.reference_name}}</span>   <span *ngIf='piece.lot_number != ""' class="floatRight">lot : {{piece.lot_number}}</span>  
+                                    </mat-option>
+                                </mat-select>
+                               <mat-hint>{{myForm.controls['piece_reference_name11'].value?.reference_name}}</mat-hint>
+                            </mat-form-field>
+                    </div>
+                    <div class="form-group new-piece-reference-container" id="divPiece12" [ngClass]="{'has-error':!myForm.controls['piece_reference_name12'].valid && myForm.controls['piece_reference_name12'].touched}">
+                            <mat-form-field>
+                                <mat-select placeholder="Référence de la pièce 12" [formControl]="myForm.controls['piece_reference_name12']">
+                                  <mat-option>--</mat-option>
+                                  <mat-option *ngFor="let piece of pieces" [value]="piece">
+                                  <span>référence : {{piece.reference_name}}</span>   <span *ngIf='piece.lot_number != ""' class="floatRight">lot : {{piece.lot_number}}</span>  
+                                    </mat-option>
+                                </mat-select>
+                               <mat-hint>{{myForm.controls['piece_reference_name12'].value?.reference_name}}</mat-hint>
+                            </mat-form-field>
+                    </div>
+                    <div class="form-group new-piece-reference-container" id="divPiece13" [ngClass]="{'has-error':!myForm.controls['piece_reference_name13'].valid && myForm.controls['piece_reference_name13'].touched}">
+                            <mat-form-field>
+                                <mat-select placeholder="Référence de la pièce 13" [formControl]="myForm.controls['piece_reference_name13']">
+                                  <mat-option>--</mat-option>
+                                  <mat-option *ngFor="let piece of pieces" [value]="piece">
+                                  <span>référence : {{piece.reference_name}}</span>   <span *ngIf='piece.lot_number != ""' class="floatRight">lot : {{piece.lot_number}}</span>  
+                                    </mat-option>
+                                </mat-select>
+                               <mat-hint>{{myForm.controls['piece_reference_name13'].value?.reference_name}}</mat-hint>
+                            </mat-form-field>
+                    </div>
+                    <div class="form-group new-piece-reference-container" id="divPiece14" [ngClass]="{'has-error':!myForm.controls['piece_reference_name14'].valid && myForm.controls['piece_reference_name14'].touched}">
+                            <mat-form-field>
+                                <mat-select placeholder="Référence de la pièce 14" [formControl]="myForm.controls['piece_reference_name14']">
+                                  <mat-option>--</mat-option>
+                                  <mat-option *ngFor="let piece of pieces" [value]="piece">
+                                  <span>référence : {{piece.reference_name}}</span>   <span *ngIf='piece.lot_number != ""' class="floatRight">lot : {{piece.lot_number}}</span>  
+                                    </mat-option>
+                                </mat-select>
+                               <mat-hint>{{myForm.controls['piece_reference_name14'].value?.reference_name}}</mat-hint>
+                            </mat-form-field>
+                    </div>
+                    <div class="form-group new-piece-reference-container" id="divPiece15" [ngClass]="{'has-error':!myForm.controls['piece_reference_name15'].valid && myForm.controls['piece_reference_name15'].touched}">
+                        <mat-form-field>
+                            <mat-select placeholder="Référence de la pièce 15" [formControl]="myForm.controls['piece_reference_name15']">
+                              <mat-option>--</mat-option>
+                              <mat-option *ngFor="let piece of pieces" [value]="piece">
+                              <span>référence : {{piece.reference_name}}</span>   <span *ngIf='piece.lot_number != ""' class="floatRight">lot : {{piece.lot_number}}</span>  
+                                </mat-option>
+                            </mat-select>
+                           <mat-hint>{{myForm.controls['piece_reference_name15'].value?.reference_name}}</mat-hint>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group new-piece-reference-container" id="divPiece16" [ngClass]="{'has-error':!myForm.controls['piece_reference_name16'].valid && myForm.controls['piece_reference_name16'].touched}">
+                        <mat-form-field>
+                            <mat-select placeholder="Référence de la pièce 16" [formControl]="myForm.controls['piece_reference_name16']">
+                              <mat-option>--</mat-option>
+                              <mat-option *ngFor="let piece of pieces" [value]="piece">
+                              <span>référence : {{piece.reference_name}}</span>   <span *ngIf='piece.lot_number != ""' class="floatRight">lot : {{piece.lot_number}}</span>  
+                                </mat-option>
+                            </mat-select>
+                           <mat-hint>{{myForm.controls['piece_reference_name16'].value?.reference_name}}</mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <div class="fresenius-piece-submit-container">
+                        <button type="button" mat-fab color="warn" (click)="morePiece()" class="custom-mat-fab" id="moreButton">+</button>
+                        <button type="button" mat-fab color="warn" (click)="lessPiece()" class="custom-mat-fab" id="lessButton">-</button>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="bottom-container">
+            <div class="fresenius-submit-container">
+                <button mat-raised-button color="primary" class="fresenius-submit-button" type="submit" [disabled]="!myForm.valid">Enregistrer</button>
+                <a *ngIf="success == true" routerLink="/home/fresenius/reparation-list" routerLinkActive="active"> voir les reparations?</a>
+            </div>
+        </div>   
+    </form>
+</div> 

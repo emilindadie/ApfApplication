@@ -1,0 +1,46 @@
+<app-header></app-header>
+<div class="stock-manage-container">
+              <div class="searchBar">
+                <mat-form-field>
+                    <input id="mat_ref" matInput placeholder="Recherche sur tous les champs" (keyup)="applyFilter($event.target.value)" required  class="form-control" ngModel>
+                </mat-form-field>
+              </div>
+              <div class="table">
+                <mat-progress-bar mode="indeterminate" id="customLoadingProgressBar"></mat-progress-bar>
+                <mat-table [dataSource]="dataSource" matSort>
+                <ng-container matColumnDef="reference_name">
+                  <mat-header-cell *matHeaderCellDef> Reference </mat-header-cell>
+                  <mat-cell *matCellDef="let piece"> {{piece.reference_name}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="lot_number">
+                  <mat-header-cell *matHeaderCellDef> Lot </mat-header-cell>
+                  <mat-cell *matCellDef="let piece"> {{piece.lot_number}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="quantity">
+                  <mat-header-cell *matHeaderCellDef (click)="changePrintMode()" id="quantity_cdk"> Quantité</mat-header-cell>
+                  <mat-cell *matCellDef="let piece"> 
+                          <div *ngIf="piece.quantity < piece.min_quantity_level">
+                            <p [ngStyle]="{'color': 'red'}"> {{piece.quantity}} </p>
+                          </div>
+                          <div *ngIf="piece.quantity >= piece.min_quantity_level">
+                            <p [ngStyle]="{'color': 'green'}"> {{piece.quantity}} </p>
+                          </div>
+                  </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="action">
+                  <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                  <mat-cell *matCellDef="let piece">
+                    <button class="editButton" type="button" (click)="openDialog(piece._id)"><mat-icon>edit</mat-icon></button>
+                    <button type="button" (click)="deletePiece(piece, $event)"><mat-icon>delete</mat-icon></button>
+                  </mat-cell>
+                </ng-container>
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;" class="stockList-mat-row" id="stockList-mat-row">
+                </mat-row>
+              </mat-table>
+              <mat-paginator id="paginator" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+            </div>
+            <button type="button" mat-fab color="warn" (click)="goToAddActivity()" class="custom-mat-fab addActivityButton">+</button>
+</div>
+

@@ -1,0 +1,241 @@
+<div class="reparation-information-update-dialog-container">
+    <form [formGroup]="myForm" (ngSubmit)="updateReparation(myForm.value)">
+        <div class="form-group">
+            <div class="form-group product-client-name-container">
+                <mat-form-field class="demo-full-width fresenius-mat-form-field-product">
+                        <input matInput placeholder="Nom du client" class="form-control" required name="client_name" [formControl]="myForm.controls['client_name']">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-group product-bill-point-container">
+                <mat-form-field class="demo-full-width fresenius-mat-form-field-product">
+                        <input matInput placeholder="Point facturé" class="form-control" required name="bill_point" [formControl]="myForm.controls['bill_point']">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-group product-deliver-point-container">
+                <mat-form-field class="demo-full-width fresenius-mat-form-field-product">
+                        <input matInput placeholder="Point livré" class="form-control" required name="deliver_point" [formControl]="myForm.controls['deliver_point']">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-group product-client-code-number-container">
+                <mat-form-field class="demo-full-width fresenius-mat-form-field-product">
+                        <input matInput placeholder="N° Code client" class="form-control" required name="client_code_number" [formControl]="myForm.controls['client_code_number']">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-group product-sap-order-number-container">
+                <mat-form-field class="demo-full-width fresenius-mat-form-field-product">
+                        <input matInput placeholder="N° d'ordre sap" class="form-control" required name="sap_order_number" [formControl]="myForm.controls['sap_order_number']">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-group product-receipt-date-container">
+                <mat-form-field class="demo-full-width fresenius-mat-form-field-product">
+                        <input matInput placeholder="Date de reception" class="form-control" required name="receipt_date" [formControl]="myForm.controls['receipt_date']">
+                </mat-form-field>
+            </div>
+        </div>
+      <div class="form-group">
+          <div class="form-group product-pro-code-container">
+                  <mat-form-field class="demo-full-width fresenius-mat-form-field-product">
+                      <input matInput placeholder="Code produit" class="form-control" required name="product_code" [formControl]="myForm.controls['product_code']">
+                  </mat-form-field>
+          </div>
+      </div>
+     
+      <div class="form-group">
+        <div class="form-group product-declared-defect-container">
+            <mat-form-field class="demo-full-width fresenius-mat-form-field-product">
+                    <input matInput placeholder="Default déclaré" class="form-control" required name="declared_defect" [formControl]="myForm.controls['declared_defect']">
+            </mat-form-field>
+        </div>
+    </div>
+      <div class="form-group">
+            <div class="form-group product-defect-found-container">
+                  <mat-form-field class="demo-full-width fresenius-mat-form-field-product">
+                      <textarea matInput placeholder="Défaut constaté - Observation" class="form-control" required name="defect_found" [formControl]="myForm.controls['defect_found']"></textarea>
+                  </mat-form-field>
+          </div>
+      </div>
+      <div class="form-group">
+              <div class="form-group product-intervention-container">
+                  <mat-form-field class="demo-full-width fresenius-mat-form-field-product">
+                      <textarea matInput placeholder="Intervention" class="form-control" required name="intervention" [formControl]="myForm.controls['intervention']"></textarea>
+                  </mat-form-field>
+              </div>
+      </div>
+      <div class="form-group">
+          <div class="form-group product-past-time-container">
+              <mat-form-field class="demo-full-width fresenius-mat-form-field-product">
+                  <input matInput placeholder="Temps passé"  class="form-control" required name="past_time" [formControl]="myForm.controls['past_time']">
+              </mat-form-field>
+          </div>
+      </div>
+
+        <div class="update-submit-container">
+            <button mat-raised-button color="primary" class="update-submit-button" type="submit">Modifier</button>
+        </div> 
+  </form>
+</div>
+
+
+
+
+<!--
+ 
+<div class="form-group">
+    <div class="form-group new-piece-reference-container" id="divPiece1" [ngClass]="{'has-error':!myForm.controls['piece_reference_name1'].valid && myForm.controls['piece_reference_name1'].touched}">
+        <mat-form-field class="demo-full-width search">  
+            <input matInput placeholder="Réference piece 1" class="form-control"  required name="piece_reference_name1" [formControl]="myForm.controls['piece_reference_name1']" [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let piece of pieces" [value]="piece.reference_name">
+                    {{ piece.reference_name }}
+                    </mat-option>
+                </mat-autocomplete>
+        </mat-form-field>
+    </div>
+    <div class="form-group new-piece-reference-container" id="divPiece2"  [ngClass]="{'has-error':!myForm.controls['piece_reference_name2'].valid}">
+        <mat-form-field class="demo-full-width search">
+            <input matInput placeholder="Réference piece 2" class="form-control" name="piece_reference_name2" [formControl]="myForm.controls['piece_reference_name2']" [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let piece of pieces" [value]="piece.reference_name">
+                     {{ piece.reference_name }}
+                    </mat-option>
+                </mat-autocomplete>
+        </mat-form-field>
+    </div>
+    <div class="form-group new-piece-reference-container" id="divPiece3" [ngClass]="{'has-error':!myForm.controls['piece_reference_name3'].valid && myForm.controls['piece_reference_name3'].touched}">
+        <mat-form-field class="demo-full-width search">
+            <input matInput placeholder="Réference piece 3" class="form-control"  name="piece_reference_name3" [formControl]="myForm.controls['piece_reference_name3']" [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let piece of pieces" [value]="piece.reference_name">
+                    {{ piece.reference_name }}
+                    </mat-option>
+                </mat-autocomplete>
+        </mat-form-field>
+    </div>
+    <div class="form-group new-piece-reference-container" id="divPiece4" [ngClass]="{'has-error':!myForm.controls['piece_reference_name4'].valid && myForm.controls['piece_reference_name4'].touched}">
+        <mat-form-field class="demo-full-width search">
+            <input matInput placeholder="Réference piece 4" class="form-control"  name="piece_reference_name4" [formControl]="myForm.controls['piece_reference_name4']" [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let piece of pieces" [value]="piece.reference_name">
+                    {{ piece.reference_name }}
+                    </mat-option>
+                </mat-autocomplete>
+        </mat-form-field>
+    </div>
+    <div class="form-group new-piece-reference-container" id="divPiece5" [ngClass]="{'has-error':!myForm.controls['piece_reference_name5'].valid && myForm.controls['piece_reference_name5'].touched}">
+        <mat-form-field class="demo-full-width search">
+            <input matInput placeholder="Réference piece 5" class="form-control"  name="piece_reference_name5" [formControl]="myForm.controls['piece_reference_name5']" [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let piece of pieces" [value]="piece.reference_name">
+                    {{ piece.reference_name }}
+                    </mat-option>
+                </mat-autocomplete>
+        </mat-form-field>
+    </div>
+    <div class="form-group new-piece-reference-container" id="divPiece6" [ngClass]="{'has-error':!myForm.controls['piece_reference_name6'].valid && myForm.controls['piece_reference_name6'].touched}">
+        <mat-form-field class="demo-full-width search">
+            <input matInput placeholder="Réference piece 6" class="form-control"  name="piece_reference_name6" [formControl]="myForm.controls['piece_reference_name6']" [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let piece of pieces" [value]="piece.reference_name">
+                    {{ piece.reference_name }}
+                    </mat-option>
+                </mat-autocomplete>
+        </mat-form-field>
+    </div>
+    <div class="form-group new-piece-reference-container" id="divPiece7" [ngClass]="{'has-error':!myForm.controls['piece_reference_name7'].valid && myForm.controls['piece_reference_name7'].touched}">
+        <mat-form-field class="demo-full-width search">
+            <input matInput placeholder="Réference piece 7" class="form-control"  name="piece_reference_name7" [formControl]="myForm.controls['piece_reference_name7']" [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let piece of pieces" [value]="piece.reference_name">
+                    {{ piece.reference_name }}
+                    </mat-option>
+                </mat-autocomplete>
+        </mat-form-field>
+    </div>
+    <div class="form-group new-piece-reference-container" id="divPiece8" [ngClass]="{'has-error':!myForm.controls['piece_reference_name8'].valid && myForm.controls['piece_reference_name8'].touched}">
+        <mat-form-field class="demo-full-width search">
+            <input matInput placeholder="Réference piece 8" class="form-control"  name="piece_reference_name8" [formControl]="myForm.controls['piece_reference_name8']" [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let piece of pieces" [value]="piece.reference_name">
+                    {{ piece.reference_name }}
+                    </mat-option>
+                </mat-autocomplete>
+        </mat-form-field>
+    </div>
+    <div class="fresenius-submit-container">
+                <button type="button" mat-fab color="warn" (click)="morePiece()" class="custom-mat-fab"s id="moreButton">+</button>
+            
+                <button type="button" mat-fab color="warn" (click)="lessPiece()" class="custom-mat-fab" id="lessButton">-</button>
+        
+    </div>
+</div>
+-->
+
+<!--
+
+<div class="reparation-information-update-dialog-container">
+    <form [formGroup]="myForm" (ngSubmit)="updatePiece(myForm.value)">
+        <div class="form-group">
+            <div class="form-group type-container">
+                <mat-form-field class="demo-full-width fresenius-mat-form-field-product">
+                        <input matInput placeholder="Type" class="form-control" required name="fresenius_type" [formControl]="myForm.controls['fresenius_type']">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-group device-number-container">
+                <mat-form-field class="demo-full-width fresenius-mat-form-field-product">
+                        <input matInput placeholder="N° appareil" class="form-control" required name="device_number" [formControl]="myForm.controls['device_number']">
+                </mat-form-field>
+            </div>
+        </div>
+      <div class="form-group">
+          <div class="form-group product-pro-code-container">
+                  <mat-form-field class="demo-full-width fresenius-mat-form-field-product">
+                      <input matInput placeholder="Code produit" class="form-control" required name="product_code" [formControl]="myForm.controls['product_code']">
+                  </mat-form-field>
+          </div>
+      </div>
+     
+      <div class="form-group">
+        <div class="form-group product-declared-defect-container">
+            <mat-form-field class="demo-full-width fresenius-mat-form-field-product">
+                    <input matInput placeholder="Default déclaré" class="form-control" required name="declared_defect" [formControl]="myForm.controls['declared_defect']">
+            </mat-form-field>
+        </div>
+    </div>
+      <div class="form-group">
+            <div class="form-group product-defect-found-container">
+                  <mat-form-field class="demo-full-width fresenius-mat-form-field-product">
+                      <textarea matInput placeholder="Défaut constaté - Observation" class="form-control" required name="defect_found" [formControl]="myForm.controls['defect_found']"></textarea>
+                  </mat-form-field>
+          </div>
+      </div>
+      <div class="form-group">
+              <div class="form-group product-intervention-container">
+                  <mat-form-field class="demo-full-width fresenius-mat-form-field-product">
+                      <textarea matInput placeholder="Intervention" class="form-control" required name="intervention" [formControl]="myForm.controls['intervention']"></textarea>
+                  </mat-form-field>
+              </div>
+      </div>
+      <div class="form-group">
+          <div class="form-group product-past-time-container">
+              <mat-form-field class="demo-full-width fresenius-mat-form-field-product">
+                  <input matInput placeholder="Temps passé"  class="form-control" required name="past_time" [formControl]="myForm.controls['past_time']">
+              </mat-form-field>
+          </div>
+      </div>
+        <div class="update-submit-container">
+            <button mat-raised-button color="primary" class="update-submit-button" type="submit">Modifier</button>
+        </div> 
+  </form>
+</div> -->

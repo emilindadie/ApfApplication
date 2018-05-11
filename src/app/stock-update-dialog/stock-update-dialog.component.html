@@ -1,0 +1,22 @@
+
+<div class="stock-update-dialog-container">
+    <form [formGroup]="myForm" (ngSubmit)="updatePiece(myForm.value)">
+            <div class="form-group quantity-container" [ngClass]="{'has-error':!myForm.controls['quantity'].valid && myForm.controls['quantity'].touched}">
+                <div>
+                <mat-form-field class="demo-full-width stock-update-mat-form-field-dialog">
+                        <input matInput placeholder="Quantité" class="form-control" required name="quantity" [formControl]="myForm.controls['quantity']">
+                </mat-form-field>
+                </div>
+                <div class="error">
+                    <span *ngIf="myForm.controls['quantity'].hasError('required') && myForm.controls['quantity'].touched && !myForm.submitted" class="required pull-middle">Entrer une quantité</span>
+                    <span *ngIf="myForm.controls['quantity'].hasError('pattern') && myForm.controls['quantity'].touched" class="required pull-middle">Entrer un nombre</span>
+                    <span *ngIf="myForm.controls['quantity'].hasError('min') && myForm.controls['quantity'].touched || myForm.controls['quantity'].hasError('max') && myForm.controls['quantity'].touched" class="required pull-middle">Entrer un nomtre compris entyre 0 et 30</span>
+                </div>
+            </div>
+            <div class="stock-update-dialog-submit-container">
+                <button mat-raised-button color="primary" class="stock-update-dialogSubmit-button" type="submit" [disabled]="!myForm.valid">Ajouter</button>
+            </div> 
+    </form>
+</div>
+
+

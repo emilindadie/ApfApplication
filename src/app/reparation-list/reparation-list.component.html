@@ -1,0 +1,43 @@
+<app-header></app-header>
+<div class="freseniusList-container">
+          <div class="searchBar">
+            <mat-form-field>
+                <input matInput placeholder="Recherche sur tous les champs" (keyup)="applyFilter($event.target.value)" required  name="serie_number" class="form-control" ngModel>
+            </mat-form-field>
+          </div>
+          <mat-progress-bar mode="indeterminate" id="customLoadingProgressBar"></mat-progress-bar>
+          <mat-table [dataSource]="dataSource">
+            <ng-container matColumnDef="device_number">
+              <mat-header-cell *matHeaderCellDef> Serie </mat-header-cell>
+              <mat-cell *matCellDef="let fresenius"> {{fresenius.device_number}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="status">
+              <mat-header-cell *matHeaderCellDef> 
+                  <div class="select-option">
+                    <mat-form-field>
+                        <mat-select [(value)]="selected" (change)="onChange($event)">
+                          <mat-option *ngFor="let state of states" [value]="state.value">
+                            {{state.viewValue}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+              </mat-header-cell>
+              <mat-cell *matCellDef="let fresenius"> {{fresenius.status}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="fresenius_date">
+                <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+                <mat-cell *matCellDef="let fresenius"> {{fresenius.receipt_date}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="fresenius_type">
+              <mat-header-cell *matHeaderCellDef> Type </mat-header-cell>
+              <mat-cell *matCellDef="let fresenius"> {{fresenius.fresenius_type}} </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onSelect(row, $event)" class="freseniusList-mat-row"></mat-row>
+
+          </mat-table>
+          <mat-paginator id="paginator" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+          <button type="button" mat-fab color="warn" (click)="goToAddActivity()" class="custom-mat-fab addActivityButton">+</button>
+</div>

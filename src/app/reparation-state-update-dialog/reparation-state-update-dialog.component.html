@@ -1,0 +1,16 @@
+<div class="reparation-state-update-dialog-container">
+    <form>
+        <mat-form-field>
+            <mat-select [(value)]="selected" (change)="onChange($event)">
+              <mat-option class="status-mat-option" *ngFor="let state of states" [value]="state.value">
+                {{state.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div class="reparation-update-dialog-submit-container">
+              <button mat-raised-button color="primary" [disabled]="buttonStatus == 'enabled'" id="saveButton" class="reparation-update-dialogSubmit-button" type="submit" (click)="updateReparation()">Enregistrer</button>
+          </div>
+    </form>
+</div>
+
+

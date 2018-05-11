@@ -1,0 +1,48 @@
+<app-header></app-header>
+<div class="operations-container">
+        <div class="searchBar">
+          <mat-form-field>
+            <input matInput placeholder="Recherche sur tous les champs" (keyup)="applyFilter($event.target.value)" required class="form-control" ngModel>
+          </mat-form-field>
+        </div>
+          <!--
+          <div class="searchCount">
+             <span>{{ filter.length}} items trouvées</span>
+          </div>-->
+          <mat-progress-bar mode="indeterminate" id="customLoadingProgressBar"></mat-progress-bar>
+          <span>{{total}}</span>
+          <span>{{bind}}</span>
+          <mat-table [dataSource]="dataSource">
+            <ng-container matColumnDef="operator_name">
+              <mat-header-cell *matHeaderCellDef> Nom </mat-header-cell>
+              <mat-cell *matCellDef="let operation"> {{operation.operator_name}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="operation_name">
+              <mat-header-cell *matHeaderCellDef> 
+                  <div class="select-option">
+                    <mat-form-field>
+                        <mat-select [(value)]="selected" (change)="onChange($event)">
+                          <mat-option *ngFor="let state of states" [value]="state.value">
+                            {{state.viewValue}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+              </mat-header-cell>
+              <mat-cell *matCellDef="let fresenius"> {{fresenius.operation_name}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="content">
+              <mat-header-cell *matHeaderCellDef> Contenu </mat-header-cell>
+              <mat-cell *matCellDef="let operation"> {{operation.content}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="date">
+                <mat-header-cell *matHeaderCellDef (click)="changePrintMode()"> Date </mat-header-cell>
+                <mat-cell *matCellDef="let operation"> {{operation.date}} </mat-cell>
+            </ng-container>
+           
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;" class="freseniusList-mat-row"></mat-row>
+
+          </mat-table>   
+          <mat-paginator id="paginator" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

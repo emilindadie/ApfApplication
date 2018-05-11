@@ -1,0 +1,36 @@
+
+<div class="signUp-container">
+        <div class="signUp-form">
+            <form #form="ngForm" (ngSubmit)="saveUser(form.value)">
+                <div class="signUp-nom-input">
+                    <mat-form-field class="demo-full-width">
+                            <input matInput placeholder="Prenom" required name="firstName" class="form-control" ngModel>
+                    </mat-form-field>
+                </div>
+                <div class="signUp-prenom-input">         
+                        <mat-form-field class="demo-full-width">
+                                <input matInput placeholder="Nom" required name="lastName" class="form-control" ngModel>
+                        </mat-form-field>
+                </div>
+                <div class="signUp-email-input">                
+                        <mat-form-field class="demo-full-width">
+                                <input matInput placeholder="Email" required name="email" class="form-control" ngModel>
+                        </mat-form-field>
+                </div>
+                <div class="signUp-password-input">                
+                        <mat-form-field class="demo-full-width">
+                                <input matInput placeholder="Password" required name="password" class="form-control" ngModel>
+                        </mat-form-field>
+                </div>
+                <div class="signUp-submit-button">
+                    <mat-card class="signUp-mat-card">
+                        <button mat-raised-button color="primary" type="submit">Inscription</button>
+                    </mat-card>
+                </div>
+            </form>
+        </div>
+        <div class="signUp-link-container">
+                <a routerLink="/login" routerLinkActive="active">Connexion</a>
+        </div>
+    </div>
+    

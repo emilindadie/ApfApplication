@@ -1,0 +1,35 @@
+<app-header></app-header>
+<div class="new-stock-container">
+    <form [formGroup]="myForm" (ngSubmit)="newPiece(myForm.value)">
+        <div class="form-group">
+            <div class="form-group new-piece-reference-container" [ngClass]="{'has-error':!myForm.controls['reference_name'].valid && myForm.controls['reference_name'].touched}">
+                <mat-form-field class="demo-full-width fresenius-mat-form-field-product">
+                    <input matInput placeholder="Nom de reference" class="form-control"  required name="reference_name" [formControl]="myForm.controls['reference_name']">
+                </mat-form-field>
+            </div>
+            <div class="form-group new-piece-lot-number-container" [ngClass]="{'has-error':!myForm.controls['lot_number'].valid && myForm.controls['lot_number'].touched}">
+                <mat-form-field class="demo-full-width fresenius-mat-form-field-product">
+                    <input matInput placeholder="Numero de lot" class="form-control" name="lot_number" [formControl]="myForm.controls['lot_number']">
+                </mat-form-field>
+            </div>
+            <div class="form-group new-piece-quantity-container" [ngClass]="{'has-error':!myForm.controls['quantity'].valid && myForm.controls['quantity'].touched}">
+                <mat-form-field class="demo-full-width fresenius-mat-form-field-product">
+                    <input matInput placeholder="Quantité" class="form-control" required name="quantity" [formControl]="myForm.controls['quantity']">
+                </mat-form-field>
+            </div>
+            <div class="form-group new-piece-min-quantity-level-container" [ngClass]="{'has-error':!myForm.controls['min_quantity_level'].valid && myForm.controls['min_quantity_level'].touched}">
+                <mat-form-field class="demo-full-width fresenius-mat-form-field-product">
+                    <input matInput placeholder="Quantité minimum" class="form-control" required name="min_quantity_level" [formControl]="myForm.controls['min_quantity_level']">
+                </mat-form-field>
+            </div>
+            <div class="form-group new-piece-description-container" [ngClass]="{'has-error':!myForm.controls['description'].valid && myForm.controls['description'].touched}">
+                <mat-form-field class="demo-full-width fresenius-mat-form-field-product">
+                        <textarea matInput placeholder="Description" class="form-control" name="description" [formControl]="myForm.controls['description']"></textarea>
+                </mat-form-field>
+            </div>
+            <div class="new-piece-submit-container">
+                <button mat-raised-button color="primary" class="new-piece-submit-button" type="submit" [disabled]="!myForm.valid">Ajouter</button>
+            </div> 
+        </div>
+    </form>
+</div>
